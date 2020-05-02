@@ -1,0 +1,40 @@
+<%- include('header') %>
+<div class="container">
+  <h1><a href="/"><img src="/images/logo.png" alt="ConvertMyMoney"></a></h1>
+  <div class="msg">
+    <small>
+      Este Formulario só aceita numeros, não aceita virgulas.
+    </small>
+  </div>
+
+  <form method="GET" action="/cotacao">
+    <input 
+      type="text" 
+      name="cotacao" 
+      placeholder="Cotação dolar"  
+      onkeypress="return onlynumber();">
+    <br>
+    <input 
+      type="text" 
+      name="quantidade" 
+      placeholder="Quantidade de dolares"  
+      onkeypress="return onlynumber();">
+    <br>
+    <button>Converter!</button><br>
+  </form>
+</div>
+  
+  <script>
+    function onlynumber(evt) {
+      var theEvent = evt || window.event;
+      var key = theEvent.keyCode || theEvent.which;
+      key = String.fromCharCode( key );
+      //var regex = /^[0-9.,]+$/;
+      var regex = /^[0-9.]+$/;
+      if( !regex.test(key) ) {
+        theEvent.returnValue = false;
+        if(theEvent.preventDefault) theEvent.preventDefault();
+      }
+    }
+  </script>
+<%- include('footer') %>
